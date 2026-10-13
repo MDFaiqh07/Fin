@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: fintrack
+    runtime: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SERVE_CLIENT
+        value: "true"
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        value: http://localhost:5173
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_EMAIL
+        value: admin@fintrack.local
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DEMO_USER1_PASSWORD
+        sync: false
+      - key: DEMO_USER2_PASSWORD
+        sync: false
